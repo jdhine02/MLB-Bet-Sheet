@@ -147,13 +147,17 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   </div>
 </div>
 <div class="section">
-  <h2>How Results Tab Populates Daily</h2>
-  <ol style="padding-left:18px;font-size:13px;line-height:2">
-    <li>Run <code>mlb_pipeline.py</code> -> pulls yesterday's box scores, SP Ks, game scores into CSVs</li>
-    <li>Run <code>mlb_grade_yesterday.py</code> -> reads previous day picks -> grades each -> appends to mlb_bets_master.csv</li>
-    <li>Run <code>mlb_build.py</code> -> Results tab reads master CSV -> shows rolling 7/30/season P&amp;L</li>
-  </ol>
-  <p style="margin-top:8px;font-size:11px;color:var(--dim)">Yesterday's SP K actuals and game scores always show on Results tab from sp_ks + linescore even before master CSV is graded.</p>
+<h2>What the Results Tab Tracks</h2>
+<p style="font-size:13px;margin-bottom:10px">Every pick the sheet generates is graded automatically each morning and added to the master log. Rolling win rates and P&L update daily.</p>
+<div class="pills">
+  <span class="pill pn"><strong>Hit Prop</strong> &mdash; ALL qualifying batters each day (3G streak or 70%+ L10) &mdash; typically 110-120 per day</span>
+  <span class="pill pn"><strong>Hit Prop Rec</strong> &mdash; Top 12 overview picks only</span>
+  <span class="pill pr"><strong>K Prop</strong> &mdash; Every SP with K/9 &ge; 7.0 who started &mdash; graded SP pitcher box score ONLY</span>
+  <span class="pill py"><strong>ML</strong> &mdash; 1 home team pick per game</span>
+  <span class="pill py"><strong>O/U</strong> &mdash; 1 directional pick per game vs the FD line</span>
+  <span class="pill ps"><strong>NRFI</strong> &mdash; 1 pick per game graded on first inning runs</span>
+</div>
+<p style="font-size:11px;color:var(--dim);margin-top:8px">Windows: Yesterday &middot; Last 7 Days &middot; Last 30 Days &middot; Full 2026 Season. Each shows W/L, win%, letter grade, and P&L by bet type. Recent 100 bets in scrollable table at bottom.</p>
 </div>
 <div style="text-align:center;padding:16px;font-size:9px;color:var(--dim)">
 MLB Stats API  Baseball Savant Statcast  The Odds API (FD/DK/BetMGM/Caesars)<br>
