@@ -55,7 +55,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
 </style></head><body><div class="wrap">
 <div class="mast">
   <div class="mast-logo">⚾ MLB <span>BET</span> SHEET</div>
-  <div class="mast-date">THURSDAY  APRIL 23, 2026</div><div class="mast-date" style="margin-top:2px;font-size:9px;opacity:.5">Updated 11:22 AM ET</div>
+  <div class="mast-date">THURSDAY  APRIL 23, 2026</div><div class="mast-date" style="margin-top:2px;font-size:9px;opacity:.5">Updated 11:42 AM ET</div>
   <div class="mast-sub">Hit Props  HR Props  H+R+RBI  K Props (SP box score only)  NRFI  ML  O/U  Spread<br>Every pick has a probability, an edge, and a reason.</div>
   <div class="btn-row">
     <a class="btn btn-r" href="tab1.html">📋 Overview -></a>
@@ -69,7 +69,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   <div class="stat-row">
     <div class="stat-box"><div class="stat-num">9</div><div class="stat-lbl">Games Today</div></div>
     <div class="stat-box"><div class="stat-num">3</div><div class="stat-lbl">✅ Confirmed</div></div>
-    <div class="stat-box"><div class="stat-num">79</div><div class="stat-lbl">Hit Props Live</div></div>
+    <div class="stat-box"><div class="stat-num">80</div><div class="stat-lbl">Hit Props Live</div></div>
     <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Dome Games</div></div>
   </div>
   <p style="font-size:11px;color:var(--dim)">Lineup from mlb_lineup_today.csv  ✅=confirmed official  📋=projected, verify before betting</p>
@@ -78,21 +78,24 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   <h2>The Five Sheets</h2>
   <div class="tab-grid">
     <a class="tab" href="index.html"><div class="tab-num"></div><div class="tab-name">Home</div><div class="tab-desc">System guide, grading rules, sizing</div></a>
-    <a class="tab" href="tab1.html"><div class="tab-num">1</div><div class="tab-name">Overview</div><div class="tab-desc">Hit streaks  Hit  HR  HRBI  K props  NRFI  Game lines + top 3 props</div></a>
+    <a class="tab" href="tab1.html"><div class="tab-num">1</div><div class="tab-name">Overview</div><div class="tab-desc">Hit streaks · Hit props (SP grade) · HR · HRBI/G L5 · K props · NRFI ⭐ · Game lines</div></a>
     <a class="tab" href="tab2.html"><div class="tab-num">2</div><div class="tab-name">Games 1-8</div><div class="tab-desc">Full cards  all 9 batters  H2H  Matchup  odds  verdict</div></a>
     <a class="tab" href="tab3.html"><div class="tab-num">3</div><div class="tab-name">Games 9-15</div><div class="tab-desc">Same format  late west coast games</div></a>
     <a class="tab" href="tab4.html"><div class="tab-num">4</div><div class="tab-name">Results</div><div class="tab-desc">Yesterday's actuals  rolling 7/30/season P&amp;L</div></a>
   </div>
 </div>
 <div class="section">
-  <h2>Overview -- 6 Prop Tables</h2>
+  <h2>Overview — Prop Tables  (Model v11)</h2>
   <div class="pills">
-    <span class="pill pn">🔥 Hit Streaks -- top 12 active 3G  💣 HR badge if applicable</span>
-    <span class="pill pn">🎯 Hit Props -- top 12  O0.5H and O1.5H both shown  rec highlighted green</span>
-    <span class="pill pr">💣 HR Props -- top 12  park factor  EV  Barrel%</span>
-    <span class="pill" style="background:var(--goldd);color:var(--gold);border:1px solid var(--goldb);font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:4px">💚 H+R+RBI -- top 12  Total Bases 1.5 proxy  O0.5 + O1.5</span>
-    <span class="pill ps">⚡ K Props -- top 12  SP box score only</span>
+    <span class="pill pn">🔥 Hit Streaks — top 12 active streaks  💣 HR badge  FD + Best odds</span>
+    <span class="pill pn">🎯 Hit Props — top 12 by composite score  SP grade A-F  AVG≥.240  no L/L  FD+Best</span>
+    <span class="pill pr">💣 HR Props — top 12  park factor + EV + Barrel%  FD + Best</span>
+    <span class="pill" style="background:var(--goldd);color:var(--gold);border:1px solid var(--goldb);font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:4px">💚 H+R+RBI — sorted by HRBI/G L5  O0.5/O1.5 dynamic  L5 R/RBI/HRBI cols</span>
+    <span class="pill ps">⚡ K Props — SP box score only  opp team K% adjusts line ±0.5</span>
+    <span class="pill py">🪜 Ladder/SGP — 1 best play each  side by side</span>
+    <span class="pill pn">🚫 NRFI — A-F grade all games  ⭐ = both SPs BAA&lt;.240 + K9≥8</span>
   </div>
+  <p style="font-size:11px;color:var(--dim);margin-top:8px">Composite score = AVG×200 + OBP×100 + SP_BAA×150 + platoon + L5_form×40 + streak sweet spot. Varies daily with matchup — same player ranks differently each day.</p>
 </div>
 <div class="section">
   <h2>SP K Grading -- Critical Rule</h2>
@@ -109,10 +112,31 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   <p>Yellow warning banner appears on projected batter tables. mlb_lineup_today.csv is generated each morning from the lineup paste -- drop it to Claude and save to MLB_DIR.</p>
 </div>
 <div class="section">
-  <h2>Market Color Coding</h2>
-  <p><span class="fd-pill">FD -115</span> = FanDuel odds (always blue pill)<br>
-  <span class="pill-over">OVER 8.5</span> = Over  Favorite spread (navy)<br>
-  <span class="pill-under">UNDER 8.5</span> = Under  Underdog spread (red)</p>
+  <h2>Book Color Coding</h2>
+  <p style="margin-bottom:8px">Every odds table shows two columns: <strong>FD</strong> (FanDuel) and <strong>Best</strong> (best available across all 8 books).</p>
+  <div class="pills" style="margin-bottom:8px">
+    <span style="display:inline-block;background:#1493FF;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">FD -115</span>
+    <span style="display:inline-block;background:#53A318;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">DK -110</span>
+    <span style="display:inline-block;background:#D4AF37;color:#000;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">MGM +100</span>
+    <span style="display:inline-block;background:#0D3349;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">CZR -118</span>
+    <span style="display:inline-block;background:#7C3AED;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">BOL +105</span>
+    <span style="display:inline-block;background:#DC2626;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">WH -112</span>
+    <span style="display:inline-block;background:#0891B2;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">BR -108</span>
+    <span style="display:inline-block;background:#CC0000;color:#fff;border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:11px;font-weight:700">ESPN -115</span>
+  </div>
+  <p style="font-size:11px;color:var(--dim)">FD HR props post via alternate market (afternoon only). Best column shows "same" when FD already has the best price.</p>
+</div>
+<div class="section">
+  <h2>SP Matchup Grade A-F</h2>
+  <p style="margin-bottom:8px">Every batter gets a daily matchup grade vs today's SP. Shown as colored badge on game tabs and hit props table.</p>
+  <div class="pills">
+    <span class="sp-grade-a">A</span>&nbsp;Strong matchup (score 80+) — hittable SP, favorable platoon, hot batter
+    &nbsp;&nbsp;<span class="sp-grade-b">B</span>&nbsp;Good (65+)
+    &nbsp;&nbsp;<span class="sp-grade-c">C</span>&nbsp;Neutral (50+)
+    &nbsp;&nbsp;<span class="sp-grade-d">D</span>&nbsp;Tough (35+)
+    &nbsp;&nbsp;<span class="sp-grade-f">F</span>&nbsp;Very tough (&lt;35) — elite SP + bad platoon
+  </div>
+  <p style="font-size:11px;color:var(--dim);margin-top:6px">Hover badge for breakdown. Factors: SP BAA (season + L5), platoon advantage, career H2H vs this SP, SP K/9, SP recent form (L5 ERA).</p>
 </div>
 <div class="section">
   <h2>NRFI Grades</h2>
@@ -136,7 +160,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
     <span class="pill pn">Safe  3-leg  0.5u  target +150 to +250</span>
     <span class="pill py">Big  5-leg  0.25u  target +1000+</span>
   </div>
-  <p>Safe parlay: top 3 hit props by L10 rate. Big parlay: mix of hit + K prop + HRBI to reach +1000 threshold. Both tracked in mlb_bets_master.csv.</p>
+  <p>Safe parlay: top composite score hit + K prop + best TB/HRBI. No L vs L legs allowed. Big parlay: HIT + K + HR + TB/HRBI + HIT (cross-type, no duplicate players). Both tracked in mlb_bets_master.csv.</p>
 </div>
 <div class="section">
   <h2>$ (Unit) Sizing</h2>
