@@ -55,7 +55,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
 </style></head><body><div class="wrap">
 <div class="mast">
   <div class="mast-logo">⚾ MLB <span>BET</span> SHEET</div>
-  <div class="mast-date">FRIDAY  MAY 8, 2026</div><div class="mast-date" style="margin-top:2px;font-size:9px;opacity:.5">Updated 09:07 AM ET</div>
+  <div class="mast-date">FRIDAY  MAY 8, 2026</div><div class="mast-date" style="margin-top:2px;font-size:9px;opacity:.5">Updated 02:46 PM ET</div>
   <div class="mast-sub">Hit Props  HR Props  H+R+RBI  K Props (SP box score only)  NRFI  ML  O/U  Spread<br>Every pick has a probability, an edge, and a reason.</div>
   <div class="btn-row">
     <a class="btn btn-r" href="tab1.html">📋 Overview -></a>
@@ -68,8 +68,8 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   <h2>Today  FRIDAY  MAY 8, 2026</h2>
   <div class="stat-row">
     <div class="stat-box"><div class="stat-num">15</div><div class="stat-lbl">Games Today</div></div>
-    <div class="stat-box"><div class="stat-num">0</div><div class="stat-lbl">✅ Confirmed</div></div>
-    <div class="stat-box"><div class="stat-num">155</div><div class="stat-lbl">Hit Props Live</div></div>
+    <div class="stat-box"><div class="stat-num">3</div><div class="stat-lbl">✅ Confirmed</div></div>
+    <div class="stat-box"><div class="stat-num">153</div><div class="stat-lbl">Hit Props Live</div></div>
     <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Dome Games</div></div>
   </div>
   <p style="font-size:11px;color:var(--dim)">Lineup from mlb_lineup_today.csv  ✅=confirmed official  📋=projected, verify before betting</p>
@@ -77,7 +77,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
 <div class="section">
   <h2>The Five Sheets</h2>
   <div class="tab-grid">
-    <a class="tab" href="index.html"><div class="tab-num"></div><div class="tab-name">Home</div><div class="tab-desc">System guide, grading rules, sizing</div></a>
+    <a class="tab" href="index.html"><div class="tab-num">0</div><div class="tab-name">Home</div><div class="tab-desc">System guide, grading rules, sizing</div></a>
     <a class="tab" href="tab1.html"><div class="tab-num">1</div><div class="tab-name">Overview</div><div class="tab-desc">Hit streaks · Hit props (SP grade) · HR · HRBI/G L5 · K props · NRFI ⭐ · Game lines</div></a>
     <a class="tab" href="tab2.html"><div class="tab-num">2</div><div class="tab-name">Games 1-8</div><div class="tab-desc">Full cards  all 9 batters  H2H  Matchup  odds  verdict</div></a>
     <a class="tab" href="tab3.html"><div class="tab-num">3</div><div class="tab-name">Games 9-15</div><div class="tab-desc">Same format  late west coast games</div></a>
@@ -85,7 +85,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   </div>
 </div>
 <div class="section">
-  <h2>Overview — Prop Tables  (Model v11)</h2>
+  <h2>Overview — Prop Tables  (Model v12)</h2>
   <div class="pills">
     <span class="pill pn">🔥 Hit Streaks — top 12 active streaks  💣 HR badge  FD + Best odds</span>
     <span class="pill pn">🎯 Hit Props — top 12 by composite score  SP grade A-F  AVG≥.240  no L/L  FD+Best</span>
@@ -98,16 +98,21 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   <p style="font-size:11px;color:var(--dim);margin-top:8px">Composite score = AVGx200 + OBPx100 + SP_BAAx150 + platoon + L5_formx40 + streak sweet spot. Varies daily with matchup — same player ranks differently each day.</p>
 </div>
 <div class="section">
-  <h2>SP K Grading -- Critical Rule</h2>
-  <p><strong>K props use SP pitcher box score ONLY (mlb_sp_ks.csv).</strong> Never the batter box score -- that overcounts by including reliever Ks attributed to the starter's spot in the order.</p>
-  <p><strong>Example (Apr 15):</strong> Jess Luzardo showed 8K from batter-side (wrong -- included reliever Ks). Actual pitcher box: 4K. Bet slip confirmed 4K. Corrected K prop rate: 58.6% (17W/12L) not the wrong 96.6%.</p>
-  <p><strong>Source:</strong> <code>data[side]['players'][sp_pid]['stats']['pitching']['strikeOuts']</code> -- K count locked the moment SP exits.</p>
+  <h2>SP K Grading</h2>
+  <div style="background:var(--redd);border-left:4px solid var(--red);padding:10px 14px;border-radius:6px;margin-bottom:8px">
+    <strong style="color:var(--red)">⚠ K props use SP pitcher box score ONLY</strong> — never the batter box score (inflated by reliever Ks). Source: <code>mlb_sp_ks.csv</code>
+  </div>
+  <p style="font-size:11px;color:var(--dim)">Historical accuracy: O4.5=52.7% · O5.5=51.4% · O6.0=54.3% ✅ | O3.5=29.5% · O4.0=29.6% · O5.0=32.7% ❌ blocked</p>
 </div>
 <div class="section">
   <h2>Confirmed vs Projected Lineups</h2>
-  <div class="pills">
-    <span class="pill pn">✅ CONFIRMED -- official lineup posted  safe to bet player props</span>
-    <span class="pill py">📋 PROJECTED -- expected  verify on MLB.com before any player prop bets</span>
+<div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--green);border-radius:6px">
+      <strong style="color:var(--green)">✅ CONFIRMED</strong><span style="font-size:13px">Official lineup posted — safe to bet player props</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--goldd);border-left:4px solid var(--gold);border-radius:6px">
+      <strong style="color:var(--gold)">📋 PROJECTED</strong><span style="font-size:13px">Expected lineup — verify on MLB.com before any player prop bets</span>
+    </div>
   </div>
   <p>Yellow warning banner appears on projected batter tables. mlb_lineup_today.csv is generated each morning from the lineup paste -- drop it to Claude and save to MLB_DIR.</p>
 </div>
@@ -129,45 +134,80 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
 <div class="section">
   <h2>SP Matchup Grade A-F</h2>
   <p style="margin-bottom:8px">Every batter gets a daily matchup grade vs today SP. Shown as colored badge on game tabs and hit props table.</p>
-  <div class="pills">
-    <span class="sp-grade-a">A</span>&nbsp;Strong matchup (score 80+) — hittable SP, favorable platoon, hot batter
-    &nbsp;&nbsp;<span class="sp-grade-b">B</span>&nbsp;Good (65+)
-    &nbsp;&nbsp;<span class="sp-grade-c">C</span>&nbsp;Neutral (50+)
-    &nbsp;&nbsp;<span class="sp-grade-d">D</span>&nbsp;Tough (35+)
-    &nbsp;&nbsp;<span class="sp-grade-f">F</span>&nbsp;Very tough (&lt;35) — elite SP + bad platoon
+  <div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--green);border-radius:6px">
+      <span class="sp-grade-a">A</span><span style="font-size:13px"><strong style="color:var(--green)">Strong matchup</strong> (score 80+) — hittable SP, favorable platoon, hot batter</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--navy);border-radius:6px">
+      <span class="sp-grade-b">B</span><span style="font-size:13px"><strong style="color:var(--navy)">Good matchup</strong> (score 65+) — above average edge</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--goldd);border-left:4px solid var(--gold);border-radius:6px">
+      <span class="sp-grade-c">C</span><span style="font-size:13px"><strong style="color:var(--gold)">Neutral</strong> (score 50+) — proceed with caution</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--redd);border-left:4px solid var(--red);border-radius:6px">
+      <span class="sp-grade-d">D</span><span style="font-size:13px"><strong style="color:var(--red)">Tough matchup</strong> (score 35+) — elite SP or bad platoon</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--redd);border-left:4px solid #991b1b;border-radius:6px">
+      <span class="sp-grade-f">F</span><span style="font-size:13px"><strong style="color:#991b1b">Avoid</strong> (&lt;35) — ace SP + wrong side of platoon</span>
+    </div>
   </div>
-  <p style="font-size:11px;color:var(--dim);margin-top:6px">Hover badge for breakdown. Factors: SP BAA (season + L5), platoon advantage, career H2H vs this SP, SP K/9, SP recent form (L5 ERA).</p>
+  <p style="font-size:11px;color:var(--dim);margin-top:6px">Hover badge for breakdown. Factors: SP BAA (season + L5), platoon advantage, career H2H vs this SP, SP K/9, SP recent form (L5 ERA). xwOBA, K%, F-Strike%, Barrel%, Groundball% (Savant).</p>
 </div>
 <div class="section">
   <h2>NRFI Grades</h2>
-  <div class="nrfi-grid">
-    <div class="nrfi-box" style="background:#e6ebf5;border-color:#b0c0e0"><div class="nrfi-num" style="color:var(--navy)">A</div><div class="nrfi-tier" style="color:var(--navy)">80%+</div><div class="nrfi-note">Strong play</div></div>
-    <div class="nrfi-box" style="background:#dbeafe;border-color:#93c5fd"><div class="nrfi-num" style="color:#1e40af">B</div><div class="nrfi-tier" style="color:#1e40af">65-79%</div><div class="nrfi-note">Solid lean</div></div>
-    <div class="nrfi-box" style="background:#fef9c3;border-color:#fde047"><div class="nrfi-num" style="color:#854d0e">C</div><div class="nrfi-tier" style="color:#854d0e">50-64%</div><div class="nrfi-note">Mixed</div></div>
-    <div class="nrfi-box" style="background:#fee2e2;border-color:#fca5a5"><div class="nrfi-num" style="color:#991b1b">D/F</div><div class="nrfi-tier" style="color:#991b1b">&lt;50%</div><div class="nrfi-note">YRFI territory</div></div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--green);border-radius:6px">
+      <span class="ng ng-a">A</span><span style="font-size:13px"><strong style="color:var(--green)">80%+</strong> — Strong play, bet with confidence</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--navy);border-radius:6px">
+      <span class="ng ng-b">B</span><span style="font-size:13px"><strong style="color:var(--navy)">65–79%</strong> — Solid lean, value play</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--goldd);border-left:4px solid var(--gold);border-radius:6px">
+      <span class="ng ng-c">C</span><span style="font-size:13px"><strong style="color:var(--gold)">50–64%</strong> — Mixed, proceed with caution</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--redd);border-left:4px solid var(--red);border-radius:6px">
+      <span class="ng ng-df">D/F</span><span style="font-size:13px"><strong style="color:var(--red)">&lt;50%</strong> — YRFI territory, avoid</span>
+    </div>
   </div>
+</d>
 </div>
 <div class="section">
   <h2>Game Verdicts</h2>
-  <div class="verd vg"><span class="verd-lbl" style="color:var(--navy)">✅ PLAY</span>Model edge 2.0 runs  full confidence</div>
-  <div class="verd vb"><span class="verd-lbl" style="color:var(--slate)">📊 VALUE LEAN</span>Edge 1.0 run  at least one strong bet</div>
-  <div class="verd vy"><span class="verd-lbl" style="color:var(--gold)">[!] MONITOR</span>Edge &lt;1.0  watch for lineup/weather changes</div>
-  <div class="verd vr"><span class="verd-lbl" style="color:var(--red)">🚫 SKIP</span>Rain 40%  confirm game status before any bets</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--green);border-radius:6px">
+      <strong style="color:var(--green);min-width:110px">✅ PLAY</strong><span style="font-size:13px">Model edge ≥2.0 runs — full confidence, bet all props in this game</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--navy);border-radius:6px">
+      <strong style="color:var(--navy);min-width:110px">📊 VALUE LEAN</strong><span style="font-size:13px">Edge 1.0+ run — at least one strong prop play</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--goldd);border-left:4px solid var(--gold);border-radius:6px">
+      <strong style="color:var(--gold);min-width:110px">[!] MONITOR</strong><span style="font-size:13px">Edge &lt;1.0 — watch for lineup/weather changes before betting</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--redd);border-left:4px solid var(--red);border-radius:6px">
+      <strong style="color:var(--red);min-width:110px">🚫 SKIP</strong><span style="font-size:13px">Rain 40%+ — confirm game status before any bets</span>
+    </div>
+  </div>
 </div>
 <div class="section">
   <h2>Parlays</h2>
   <div class="pills">
-    <span class="pill pn">Safe  3-leg  0.5u  target +150 to +250</span>
-    <span class="pill py">Big  5-leg  0.25u  target +1000+</span>
+    <span class="pill pn">🔒 Small  3-leg all LOCK  0.5u  target +150 to +250  any prop type</span>
+    <span class="pill py">🔒 Big  5-leg all LOCK  0.25u  target +1000+  any prop type</span>
   </div>
-  <p>Safe parlay: top composite score hit + K prop + best TB/HRBI. No L vs L legs allowed. Big parlay: HIT + K + HR + TB/HRBI + HIT (cross-type, no duplicate players). Both tracked in mlb_bets_master.csv.</p>
+  <p><strong>Both parlays require ALL legs to be 🔒 LOCK</strong> (model edge ≥+8% above market). Any prop type eligible — Hit, K, HR, or HRBI. If fewer than 3 locks exist, parlay shows "No locks available." Big parlay targets 5 locks; small targets 3. Both tracked in mlb_bets_master.csv.</p>
 </div>
 <div class="section">
   <h2>$ (Unit) Sizing</h2>
-  <div class="pills">
-    <span class="pill pn">1.0 $ -- *** full confidence plays</span>
-    <span class="pill ps">0.5 $ -- ** value  K props  NRFI  Safe Parlay</span>
-    <span class="pill py">0.25 $ -- HR  H+R+RBI  marginal *  Big Parlay</span>
+<div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--green);border-radius:6px">
+      <strong style="color:var(--green);min-width:60px">1.0 $</strong><span style="font-size:13px">★★★ Full confidence — Hit props with 🔒 LOCK edge</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--navyd);border-left:4px solid var(--navy);border-radius:6px">
+      <strong style="color:var(--navy);min-width:60px">0.5 $</strong><span style="font-size:13px">★★ Value — K props, NRFI, Small Parlay</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--goldd);border-left:4px solid var(--gold);border-radius:6px">
+      <strong style="color:var(--gold);min-width:60px">0.25 $</strong><span style="font-size:13px">★ Speculative — HR, H+R+RBI, Big Parlay, marginal plays</span>
+    </div>
   </div>
 </div>
 <div class="section">
