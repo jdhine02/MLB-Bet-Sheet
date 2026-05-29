@@ -131,13 +131,13 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
     </div>
     <div class="model-box">
       <div class="model-title">Prop Table Qualification</div>
-      <p><strong>Hit:</strong> AVG≥.215, OBP≥.290, ≥10 AB, no L vs L<br>
-      <strong>HR:</strong> Season HR≥3, Barrel%+EV+L5HR+L10HR+park+platoon+wind<br>
-      <strong>TB:</strong> L10 TB2+≥3, (TB2%+TB3+%)≥25%, ≥10 AB<br>
-      <strong>K:</strong> K9&gt;0, line = 3.5/4.5/5.5 by K9 tier ± opp K% adj<br>
-      <strong>HRBI:</strong> L10 HRBI≥2 or L5 HRBI/G≥1.5, AVG≥.220<br>
-      <strong>BOTD Hit:</strong> Top edge × 3.0 + model score × 0.15<br>
-      <strong>BOTD K:</strong> Top K9 SP with confirmed line</p>
+      <p><strong>Hit O0.5H:</strong> AVG≥.215, OBP≥.290, ≥10 AB, no L vs L, FD odds ≤−150<br>
+      <strong>HR O0.5HR:</strong> Season HR≥3 · Barrel%+EV+L5HR+L10HR+park+platoon+SP HR/9<br>
+      <strong>TB O1.5TB:</strong> L10 TB2+≥3 · (TB2%+TB3+%)≥25% · ≥10 AB<br>
+      <strong>K Prop:</strong> FD-posted line · recommend only when ExpK ≥ line+0.25 · graded only when ExpK ≥ line+0.5<br>
+      <strong>HRBI O0.5:</strong> L10 HRBI≥2 or L5 HRBI/G≥1.5 · AVG≥.220 · FD odds ≤−150<br>
+      <strong>BOTD:</strong> Best single pick across Hit/HRBI/TB by edge×3 + model score<br>
+      <strong>BOTD K:</strong> Best SP where FD line posted and ExpK ≥ line+0.25</p>
     </div>
   </div>
   <div class="model-row">
@@ -161,17 +161,6 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   </div>
 </div>
 
-<div class="section">
-  <h2>⚙️ How to Use</h2>
-  <ul>
-    <li>Run <strong>mlb_run_daily.py</strong> each morning. Pipeline pulls stats, odds, grades yesterday's bets, builds HTML, pushes to GitHub.</li>
-    <li>After lineups post (~60–90 min before first pitch): paste lineups to Claude → save <code>mlb_lineup_today.csv</code> → run <code>--build-only</code> or <code>--rerun</code>.</li>
-    <li>Run <code>--close</code> right before game time to capture CLV (closing line value).</li>
-    <li>Re-runs fire automatically at :15 past each odd hour (11:15, 1:15, 3:15, 5:15, 7:15 PM ET) to pick up confirmed lineups and updated odds.</li>
-    <li><strong>Tab 1:</strong> Start here for what to bet today. BOTD = highest conviction single pick per category.</li>
-    <li><strong>Tabs 2–3:</strong> Use for game-specific batter context. Hover any pill or grade for details.</li>
-    <li><strong>Tab 4:</strong> Check results. Season P&amp;L by type guides where to focus units.</li>
-  </ul>
-</div>
+
 
 </div></body></html>
