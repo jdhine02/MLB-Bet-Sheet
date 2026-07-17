@@ -427,6 +427,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
 (function () {
   const WORKER_URL = "https://mlb-bet-sheet-chat.jdhine02.workers.dev";
   const STORAGE_KEY = "mbs_access_code";
+  const SESSION_KEY = "mbs_chat_session";
   const MAX_HISTORY_TURNS = 6; // cap conversation memory sent per request
 
   const launcher = document.getElementById("mbs-launcher");
@@ -441,16 +442,52 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   const sendBtn = document.getElementById("mbs-send");
 
   let accessCode = localStorage.getItem(STORAGE_KEY) || "";
-  let history = []; // [{role: "user"|"assistant", content: "..."}]
+  let history = []; // [{role: "user"|"assistant", content: "..."}] -- sent to the Worker
+  let messageLog = []; // [{text, cls}] -- everything rendered in the panel, for restore
   let panelOpen = false;
   let initialized = false;
 
-  function addMessage(text, cls) {
+  // sessionStorage persists across tab navigation (index/tab1-4 are separate
+  // page loads) and refresh, but clears when the browser tab/window closes --
+  // the right lifetime for "today's" chat, which is stale by tomorrow anyway.
+  function todayStamp() {
+    return new Date().toDateString();
+  }
+
+  function saveSession() {
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        stamp: todayStamp(),
+        history: history,
+        log: messageLog,
+        panelOpen: panelOpen,
+      }));
+    } catch (e) { /* storage unavailable -- chat still works, just won't persist */ }
+  }
+
+  function loadSession() {
+    try {
+      const raw = sessionStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed.stamp !== todayStamp()) {
+        sessionStorage.removeItem(SESSION_KEY); // new day, new slate -- start fresh
+        return null;
+      }
+      return parsed;
+    } catch (e) { return null; }
+  }
+
+  function addMessage(text, cls, skipSave) {
     const div = document.createElement("div");
     div.className = "mbs-msg " + cls;
     div.textContent = text;
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
+    if (!skipSave) {
+      messageLog.push({ text, cls });
+      saveSession();
+    }
     return div;
   }
 
@@ -473,13 +510,13 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
     messagesEl.style.display = "flex";
     inputRow.style.display = "flex";
     if (!initialized) {
-      addMessage("Ask me about today's lineups, odds, injuries, weather, or how picks have been hitting.", "mbs-system");
+      addMessage("Ask me about today's lineups, odds, injuries, weather, or how picks have been hitting.", "mbs-msg-system");
       initialized = true;
     }
   }
 
-  function togglePanel() {
-    panelOpen = !panelOpen;
+  function togglePanel(forceOpen) {
+    panelOpen = typeof forceOpen === "boolean" ? forceOpen : !panelOpen;
     panel.classList.toggle("mbs-open", panelOpen);
     launcher.setAttribute("aria-expanded", String(panelOpen));
     if (panelOpen) {
@@ -491,10 +528,27 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
         codeInput.focus();
       }
     }
+    saveSession();
   }
 
-  launcher.addEventListener("click", togglePanel);
-  closeBtn.addEventListener("click", togglePanel);
+  // Restore a same-day session on load: replay rendered messages, restore
+  // the API-format history, and reopen the panel if it was open before.
+  const restored = loadSession();
+  if (restored && restored.log && restored.log.length) {
+    history = restored.history || [];
+    messageLog = []; // addMessage will rebuild this as it replays
+    if (accessCode) {
+      codeGate.style.display = "none";
+      messagesEl.style.display = "flex";
+      inputRow.style.display = "flex";
+      restored.log.forEach((m) => addMessage(m.text, m.cls));
+      initialized = true;
+      if (restored.panelOpen) togglePanel(true);
+    }
+  }
+
+  launcher.addEventListener("click", () => togglePanel());
+  closeBtn.addEventListener("click", () => togglePanel());
 
   codeSubmit.addEventListener("click", submitCode);
   codeInput.addEventListener("keydown", (e) => {
@@ -508,6 +562,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
     localStorage.setItem(STORAGE_KEY, val);
     showChatUI();
     input.focus();
+    saveSession();
   }
 
   sendBtn.addEventListener("click", sendMessage);
@@ -555,6 +610,7 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
       addMessage(data.answer, "mbs-msg-bot");
       history.push({ role: "user", content: question });
       history.push({ role: "assistant", content: data.answer });
+      saveSession();
     } catch (e) {
       hideTyping();
       addMessage("Couldn't reach the server. Try again in a moment.", "mbs-msg-error");
@@ -565,5 +621,4 @@ letter-spacing:.08em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px sol
   }
 })();
 </script>
-
 </body></html>
